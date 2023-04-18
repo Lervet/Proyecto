@@ -1,0 +1,44 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isWeb$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isWeb$ | async) ? 'over' : 'side'"
+      [opened]="(isWeb$ | async) === false">
+    <mat-toolbar>Modulos</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="/Factura"> <span class="material-symbols-outlined">
+        payments
+        </span>Factura</a>
+      <a mat-list-item href="/Personas"> <span class="material-symbols-outlined">
+        groups
+        </span> Personas</a>
+      <a mat-list-item href="/Productos"> <span class="material-symbols-outlined">
+        inventory
+        </span> Productos</a>
+      <a mat-list-item href="/Proveedor"> <span class="material-symbols-outlined">
+        trolley
+        </span> Proveedor</a>
+      <a mat-list-item href="Publicidad"> <span class="material-symbols-outlined">
+        reviews
+        </span> Publicidad</a>
+      <a mat-list-item href="/Gastos"> <span class="material-symbols-outlined">
+        attach_money
+        </span> Gastos</a>
+       
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="toolbar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isWeb$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>BlueBell</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    
+  </mat-sidenav-content>
+</mat-sidenav-container>
