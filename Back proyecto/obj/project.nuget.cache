@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7Cz3uoNXLhZbNorqBlB5g6YteCRgi1tWPeAOZn6Ns8LJAQ8LopyYpGqKBsMYTdNnNxZNCOopP7SCq8XPTBk4EQ==",
+  "dgSpecHash": "mMgsoRLVakb3FMDmTXCEV1T2xRjU8tlBQs/I3jzijCvMdD11HHdXd6WUoAhuh0w3bZJJti4PWVS3Ym1Q/nrm6Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Erick\\Desktop\\Programacion\\blue_bell\\Blue_Bell\\Blue_Bell\\Blue_Bell.csproj",
+  "projectFilePath": "C:\\Users\\Erick\\Desktop\\Carpeta harol\\Back proyecto\\Blue_Bell.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Erick\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Erick\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
