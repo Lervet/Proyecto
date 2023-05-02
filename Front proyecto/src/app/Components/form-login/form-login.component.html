@@ -1,0 +1,37 @@
+
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header class="letra">
+    
+      <mat-card-title class="submit" >Credenciales:</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <input type="email" matInput placeholder="ej: abc@123.com" formControlName="usuario">
+            <mat-error *ngIf="loginForm.controls['usuario'].hasError('required')">
+              Este campo es <strong>obligatorio*</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <input type="password" matInput placeholder="Contraseña" formControlName="password">
+            <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+              Este campo es <strong> obligatorio*</strong>
+            </mat-error>
+          
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <a class="letra" href="#">¿Olvidaste tu contraseña?</a><br>
+    <mat-card-actions>
+      
+      <button class="letra" mat-raised-button color="primary" type="submit">Enviar</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
