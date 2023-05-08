@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
 
 @Component({
@@ -7,12 +8,31 @@ import { ApiService } from 'src/app/Services/api.service';
   styleUrls: ['./gastos.component.css']
 })
 export class GastosComponent {
- constructor(public api:ApiService){
+  title: string= "Gastos";
+  displayedColumns: string[];
+  dataSource: MatTableDataSource<any>;
 
- }
- ngOnInit(): void{
-  var response=this.api.getAll("Gastoes")
-  console.log(response);
-  
-}
+  constructor(public api:ApiService){
+    this.dataSource= new MatTableDataSource
+  }
+
+  ngOnInit(): void {
+    this.getProductos();
+  }
+
+
+  public async getProductos(){
+    await this.api.getAll("Gastoes").then((res)=> {
+    this.loadTable([res[0]])
+    this.dataSource.data=res;
+    })
+    
+  }
+
+  public loadTable(data:any[]){
+    this.displayedColumns=[];
+    for(let colummns in data[0]){
+      this.displayedColumns.push(colummns);
+    }
+  }
 }

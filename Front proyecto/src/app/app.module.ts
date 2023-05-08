@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonasComponent } from './Components/personas/personas.component';
@@ -17,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { LoginComponent } from './Components/login/login.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
@@ -28,9 +26,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
-
-
+import { FormLoginComponent } from './Components/form-login/form-login.component';
+import { TablaComponent } from './Components/tabla/tabla.component';
 
 
 @NgModule({
@@ -43,7 +40,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ProductosComponent,
     FacturaComponent,
     MenuComponent,
-    LoginComponent,
+    FormLoginComponent,
+    TablaComponent
   ],
   imports: [
     HttpClientModule,
