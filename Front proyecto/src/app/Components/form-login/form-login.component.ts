@@ -1,10 +1,8 @@
+import { NgSwitchDefault } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Title } from '@angular/platform-browser';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/Services/login.service';
-// ES6 Modules or TypeScript
 import Swal from 'sweetalert2';
-
 
 
 @Component({
@@ -13,33 +11,37 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form-login.component.css']
 })
 export class FormLoginComponent {
-  us="";
+  constructor(public loginService:LoginService){
+
+  }
+
+  em="";
   pass="";
-loginForm = new FormGroup({
- usuario: new FormControl('',Validators.required),
- password: new FormControl('',Validators.required),
-})
+  loginForm= new FormGroup({
+    usuario: new FormControl('',Validators.required),
+    password: new FormControl('',Validators.compose([Validators.required, Validators.minLength(8)]))
+  });
 
-  constructor(public loginservice:LoginService) {}
-
-  async onSubmit() {
-    this.us = this.loginForm.controls["usuario"].value;
+  async onSubmit(){
+    this.em = this.loginForm.controls["usuario"].value;
     this.pass = this.loginForm.controls["password"].value;
-    if(this.us=="usuario" && this.pass == "1234"){
-      Swal.fire(
-        'Bienvenido!',
-        'Tus credenciales son correctas!',
-        'success'
-      )
+    if(this.em==="usuario" && this.pass==="12345678"){
+     Swal.fire(
+  	'Good job!',
+ 	 'You clicked the button!',
+  'success'
+)
       localStorage.setItem('login','login');
-     this.loginservice.login.next("login");
+
+      this.loginService.login.next("login");
     }else{
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Datos incorrectos',
-        footer: 'Intente con: usuario: usuario y contraseña: 1234' 
+        icon:"error",
+        title:"Ooops..",
+        text: "Datos de logueo fallidos",
+        footer: "Intente: usuario: usuario contraseña: 12345678"
       })
     }
   }
+
 }

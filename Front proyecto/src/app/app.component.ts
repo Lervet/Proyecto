@@ -6,29 +6,26 @@ import { LoginService } from './Services/login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent {
-  title = 'BlueBell';
- 
-  constructor(public loginservice:LoginService){
-    
+  constructor(public loginService: LoginService){
+
   }
-  login: String ="login";
-  
-  ngOnInit():void {
+  login: String = "login";
+  ngOnInit(): void {
     if(localStorage.getItem('login')===null){
       localStorage.setItem('login','logout');
     }
-    if(this.loginservice.login.value == "login"){
-      this.loginservice.login.next("login");
+    if(this.loginService.login.value == "login"){
+      this.loginService.login.next("login");
     }else{
-      this.loginservice.login.next("logout");
+      this.loginService.login.next("logout");
     }
-    this.loginservice.login.subscribe(value=>{
+    this.loginService.login.subscribe(value => {
       this.login = value;
-      console.log(this.login);
+      console.log(this.login)
     })
+      
+    
   }
-
 
 }
