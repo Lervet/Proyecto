@@ -29,6 +29,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormLoginComponent } from './Components/form-login/form-login.component';
 import { TablaComponent } from './Components/tabla/tabla.component';
 
+import { FormGastosComponent } from './Components/formularios/form-gastos/form-gastos.component';
+import { FormPersonasComponent } from './Components/formularios/form-personas/form-personas.component';
+import { FormProductosComponent } from './Components/formularios/form-productos/form-productos.component';
+import { FormProveedorComponent } from './Components/formularios/form-proveedor/form-proveedor.component';
+import { FormPublicidadComponent } from './Components/formularios/form-publicidad/form-publicidad.component';
+import { FormFacturaComponent } from './Components/formularios/form-factura/form-factura.component';
+
+
 
 @NgModule({
   declarations: [
@@ -41,7 +49,14 @@ import { TablaComponent } from './Components/tabla/tabla.component';
     FacturaComponent,
     MenuComponent,
     FormLoginComponent,
-    TablaComponent
+    TablaComponent,
+    FormFacturaComponent,
+    FormGastosComponent,
+    FormPersonasComponent,
+    FormProductosComponent,
+    FormProveedorComponent,
+    FormPublicidadComponent,
+    
   ],
   imports: [
     HttpClientModule,
