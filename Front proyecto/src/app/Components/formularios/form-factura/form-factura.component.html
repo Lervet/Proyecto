@@ -1,0 +1,36 @@
+<div class="container">
+    <form class="example-form" [formGroup]="facturaForm" novalidate (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Fecha de la factura:</mat-label>
+          <input matInput placeholder="ej: 23/05/23" formControlName="fecha">
+          <mat-error *ngIf="facturaForm.controls['fecha'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Cantidad del producto:</mat-label>
+          <input matInput placeholder="ej: 1000" formControlName="cant">
+          <mat-error *ngIf="facturaForm.controls['cant'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Forma de pago:</mat-label>
+          <input matInput placeholder="ej: Fisico/PSE" formControlName="formPago">
+          <mat-error *ngIf="facturaForm.controls['formPago'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Articulo:</mat-label>
+          <input matInput placeholder="ej: Shampoo para harol" formControlName="articulo">
+          <mat-error *ngIf="facturaForm.controls['articulo'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button >Crear</button>
+    </form>
+  </div>
+  

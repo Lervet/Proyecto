@@ -7,6 +7,7 @@ import { LoginService } from './Services/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  title: any;
   constructor(public loginService: LoginService){
 
   }

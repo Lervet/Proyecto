@@ -1,0 +1,21 @@
+<div class="container">
+    <form class="example-form" [formGroup]="gastosForm" novalidate (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Cantidad de mercancia:</mat-label>
+          <input matInput placeholder="ej: 1000" formControlName="compMer">
+          <mat-error *ngIf="gastosForm.controls['compMer'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Costo de la Publicidad:</mat-label>
+          <input matInput placeholder="ej: 10000" formControlName="costPubli">
+          <mat-error *ngIf="gastosForm.controls['costPubli'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button >Crear</button>
+    </form>
+  </div>
+  
