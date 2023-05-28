@@ -9,6 +9,12 @@
       <!-- ID Column -->
       <ng-container matColumnDef="{{disCol}}" *ngFor="let disCol of displayedColumns">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>{{disCol}}</th>
+        <div *ngIf="disCol==='action'">
+          <td mat-cell *matCellDef="let botton">
+            <button (click)="openDialog">editar</button>
+            <button (click)="eliminarha">eliminar</button>
+          </td>
+        </div>
         <td mat-cell *matCellDef="let element">{{element[disCol]}}</td>
       </ng-container>
   

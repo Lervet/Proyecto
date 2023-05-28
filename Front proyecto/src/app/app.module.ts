@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormLoginComponent } from './Components/form-login/form-login.component';
 import { TablaComponent } from './Components/tabla/tabla.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { FormGastosComponent } from './Components/formularios/form-gastos/form-gastos.component';
 import { FormPersonasComponent } from './Components/formularios/form-personas/form-personas.component';
@@ -77,7 +78,10 @@ import { FormFacturaComponent } from './Components/formularios/form-factura/form
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
     MatFormFieldModule
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

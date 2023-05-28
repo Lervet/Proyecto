@@ -22,12 +22,15 @@ const routes: Routes = [
   {path: "Proveedor", component:ProveedorComponent},
   {path: "Publicidad", component:PublicidadComponent},
   {path: "Gastos", component:GastosComponent},
+
+
   {path: "formFactura", component:FormFacturaComponent},
   {path: "formGastos", component:FormGastosComponent},
   {path: "formPersonas", component:FormPersonasComponent},
   {path: "formProductos", component:FormProductosComponent},
   {path: "formProveedor", component:FormProveedorComponent},
   {path: "formPublicidad", component:FormPublicidadComponent},
+
 
 
 ];
