@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormLoginComponent } from './Components/form-login/form-login.component';
 import { TablaComponent } from './Components/tabla/tabla.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -62,7 +63,10 @@ import { TablaComponent } from './Components/tabla/tabla.component';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDialogModule,
     MatFormFieldModule
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

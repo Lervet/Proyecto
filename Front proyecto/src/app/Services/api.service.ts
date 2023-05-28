@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { PersonasComponent } from '../Components/personas/personas.component';
 
 @Injectable({
   providedIn: 'root'
@@ -34,6 +35,16 @@ export class ApiService {
     )
     return pruebas
   }
+
+  /////////Metodo Editar/////////////
+  async Editar(Controller:String,id:number){
+    var pruebas:any
+  await this.http.put(this.url, Controller).toPromise().then((res=>{pruebas=res}
+      )
+    )
+    return pruebas
+  }
+
 
 
 }

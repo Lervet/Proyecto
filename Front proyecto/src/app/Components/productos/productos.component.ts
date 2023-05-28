@@ -34,6 +34,7 @@ export class ProductosComponent {
     for(let colummns in data[0]){
       this.displayedColumns.push(colummns);
     }
+    this.displayedColumns.push('action');
   }
 }
 

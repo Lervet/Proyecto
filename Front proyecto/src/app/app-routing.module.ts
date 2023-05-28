@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: "Proveedor", component:ProveedorComponent},
   {path: "Publicidad", component:PublicidadComponent},
   {path: "Gastos", component:GastosComponent},
+  {path: "Personas/:id", component:PersonasComponent},
 
 
 ];
