@@ -4,6 +4,9 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
 import { MatDialog } from '@angular/material/dialog';
+import { FormsService } from 'src/app/Services/forms.service';
+import Swal from 'sweetalert2';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-tabla',
@@ -14,17 +17,17 @@ export class TablaComponent implements OnInit {
   @Input() title:string;
   @Input() displayedColumns: string[];
   @Input() dataSource: MatTableDataSource<any>;
-  @Input() formComponente: MatTableDataSource<any>;
+  @Input() formComponente: any;
+  @Input() element: any;
+  @Input() componenttable: any;
+
 
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dialog: any;
+  Controller: String;
   
-  
- 
-
-  constructor(public api:ApiService){
+  constructor(public api:ApiService, public dialog:MatDialog, public forms:FormsService){
     this.dataSource= new MatTableDataSource
   }
 
@@ -35,10 +38,11 @@ export class TablaComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  openDialog(){    
-    this.dialog.open(this.formComponente)  
+  openDialog(element:any){    
+    this.forms.element.next(element);
+    this.dialog.open(this.formComponente);
+    
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -47,6 +51,25 @@ export class TablaComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  eliminar(element:any){
+    Swal.fire({
+      title:'¿Quiere eliminar este campo?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Aceptar',
+      denyButtonText: 'Cancelar'
+
+    }).then((res)=>{
+      if(res.isConfirmed){
+        let b: any =[Object.values(element)[0]];
+        this.api.Delete("Publicidads", b )
+        window.location.reload();
+        console.log();
+      }
+    })
+
   }
 }
 

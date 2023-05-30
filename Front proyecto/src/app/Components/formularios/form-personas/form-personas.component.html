@@ -2,7 +2,7 @@
     <form class="example-form" [formGroup]="personasForm" novalidate (ngSubmit)="onSubmit()">
         <mat-form-field class="example-full-width">
           <mat-label>Nombre:</mat-label>
-          <input matInput placeholder="ej: Miguel" formControlName="nom">
+          <input matInput placeholder="ej: Nom" formControlName="nom">
           <mat-error *ngIf="personasForm.controls['nom'].hasError('required')">
             Este campo es <strong>obligatorio*</strong>
           </mat-error>
@@ -10,7 +10,7 @@
   
         <mat-form-field class="example-full-width">
           <mat-label>Apellidos:</mat-label>
-          <input matInput placeholder="ej: Mesa" formControlName="ape">
+          <input matInput placeholder="ej: Ape" formControlName="ape">
           <mat-error *ngIf="personasForm.controls['ape'].hasError('required')">
             Este campo es <strong>obligatorio*</strong>
           </mat-error>

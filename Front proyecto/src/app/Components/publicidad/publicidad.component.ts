@@ -12,6 +12,7 @@ export class PublicidadComponent {
   displayedColumns: string[];
   dataSource: MatTableDataSource<any>;
 
+
   constructor(public api:ApiService){
     this.dataSource= new MatTableDataSource
   }
@@ -20,13 +21,11 @@ export class PublicidadComponent {
     this.getProductos();
   }
 
-
   public async getProductos(){
     await this.api.getAll("Publicidads").then((res)=> {
     this.loadTable([res[0]])
     this.dataSource.data=res;
     })
-    
   }
 
   public loadTable(data:any[]){
@@ -34,5 +33,6 @@ export class PublicidadComponent {
     for(let colummns in data[0]){
       this.displayedColumns.push(colummns);
     }
+    this.displayedColumns.push('action');
   }
 }

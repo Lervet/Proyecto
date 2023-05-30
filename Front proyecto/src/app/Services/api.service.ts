@@ -28,9 +28,10 @@ export class ApiService {
     return pruebas
   }
   //////////Metodo Delete////////////
-  async Delete(Controller:String,id:number){
+  async Delete(Controller:String, id:string){
     var pruebas:any
-  await this.http.delete(this.url+Controller+id).toPromise().then((res=>{pruebas=res}
+  await this.http.delete(this.url+Controller+"/"+id).toPromise().then((res=>{
+    pruebas=res}
       )
     )
     return pruebas

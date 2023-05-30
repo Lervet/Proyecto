@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormGastosComponent } from '../formularios/form-gastos/form-gastos.component';
 
 @Component({
   selector: 'app-gastos',
@@ -11,7 +12,9 @@ export class GastosComponent {
   title: string= "Gastos";
   displayedColumns: string[];
   dataSource: MatTableDataSource<any>;
+  formComponente: any = FormGastosComponent;
 
+  
   constructor(public api:ApiService){
     this.dataSource= new MatTableDataSource
   }
@@ -19,7 +22,6 @@ export class GastosComponent {
   ngOnInit(): void {
     this.getProductos();
   }
-
 
   public async getProductos(){
     await this.api.getAll("Gastoes").then((res)=> {
@@ -33,6 +35,10 @@ export class GastosComponent {
     this.displayedColumns=[];
     for(let colummns in data[0]){
       this.displayedColumns.push(colummns);
+
+      
     }
+    console.log(this.displayedColumns);
   }
+  
 }
