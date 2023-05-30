@@ -1,12 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 
 @Component({
   selector: 'app-form-productos',
   templateUrl: './form-productos.component.html',
   styleUrls: ['./form-productos.component.css']
 })
-export class FormProductosComponent {
+export class FormProductosComponent implements OnInit{
+
+  constructor (public forms: FormsService){ }
+  ngOnInit(): void {
+    this.forms.element.subscribe((res:any)=>{
+      if(res!=""){
+        this.productosForm.setControl('desPro', new FormControl(res.fechaFactura));
+        this.productosForm.setControl('nomPro', new FormControl(res.cantidad));
+        this.productosForm.setControl('preProd', new FormControl(res.cantidad));
+        this.productosForm.setControl('existe', new FormControl(res.cantidad));
+        this.productosForm.setControl('fechProd', new FormControl(res.cantidad));
+        this.productosForm.setControl('cantMax', new FormControl(res.cantidad));
+        this.productosForm.setControl('cantMin', new FormControl(res.cantidad));
+        this.productosForm.setControl('foto', new FormControl(res.cantidad));
+        this.productosForm.setControl('catProd', new FormControl(res.cantidad));
+        
+      }
+    })
+  }
   
   productosForm= new FormGroup({
     desPro: new FormControl('',Validators.required),

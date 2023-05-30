@@ -13,8 +13,7 @@ export class FormPublicidadComponent {
     tipoPubli: new FormControl('',Validators.required),
     costPubli: new FormControl('',Validators.required),
     cantPubli: new FormControl('',Validators.required),
-   
-   
+
   });
 
   async onSubmit(){
@@ -24,5 +23,4 @@ export class FormPublicidadComponent {
     console.log(this.publicidadForm.controls["cantPubli"].value);
     
   }
-
 }

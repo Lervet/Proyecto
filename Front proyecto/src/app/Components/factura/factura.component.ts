@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormFacturaComponent } from '../formularios/form-factura/form-factura.component';
 
 @Component({
   selector: 'app-factura',
@@ -11,7 +12,7 @@ export class FacturaComponent {
   title: string= "Factura";
   displayedColumns: string[];
   dataSource: MatTableDataSource<any>;
-  formComponente:any;
+  formComponente:any = FormFacturaComponent;
 
   constructor(public api:ApiService){
     this.dataSource= new MatTableDataSource

@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormPersonasComponent } from '../formularios/form-personas/form-personas.component';
 
 @Component({
   selector: 'app-personas',
@@ -14,6 +15,7 @@ export class PersonasComponent {
   title: string= "Personas";
   displayedColumns: string[];
   dataSource: MatTableDataSource<any>;
+  formComponente:any = FormPersonasComponent;
 
   constructor(public api:ApiService){
     this.dataSource= new MatTableDataSource
@@ -23,11 +25,11 @@ export class PersonasComponent {
     this.getProductos();
   }
 
-
   public async getProductos(){
     await this.api.getAll("Personas").then((res)=> {
     this.loadTable([res[0]])
     this.dataSource.data=res;
+    
     })
     
   }

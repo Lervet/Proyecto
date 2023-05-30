@@ -13,7 +13,6 @@ import { FormProductosComponent } from './Components/formularios/form-productos/
 import { FormProveedorComponent } from './Components/formularios/form-proveedor/form-proveedor.component';
 import { FormPublicidadComponent } from './Components/formularios/form-publicidad/form-publicidad.component';
 
-
 const routes: Routes = [
 
   {path: "Factura", component:FacturaComponent},
@@ -22,17 +21,12 @@ const routes: Routes = [
   {path: "Proveedor", component:ProveedorComponent},
   {path: "Publicidad", component:PublicidadComponent},
   {path: "Gastos", component:GastosComponent},
-
-
   {path: "formFactura", component:FormFacturaComponent},
   {path: "formGastos", component:FormGastosComponent},
   {path: "formPersonas", component:FormPersonasComponent},
   {path: "formProductos", component:FormProductosComponent},
   {path: "formProveedor", component:FormProveedorComponent},
   {path: "formPublicidad", component:FormPublicidadComponent},
-
-
-
 ];
 
 @NgModule({
