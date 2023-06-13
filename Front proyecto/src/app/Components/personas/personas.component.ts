@@ -31,7 +31,6 @@ export class PersonasComponent {
     this.dataSource.data=res;
     
     })
-    
   }
 
   public loadTable(data:any[]){

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormProveedorComponent } from '../formularios/form-proveedor/form-proveedor.component';
 @Component({
   selector: 'app-proveedor',
   templateUrl: './proveedor.component.html',
@@ -10,6 +11,7 @@ export class ProveedorComponent {
   title: string= "Proveedores";
   displayedColumns: string[];
   dataSource: MatTableDataSource<any>;
+  formComponente:any = FormProveedorComponent;
 
   constructor(public api:ApiService){
     this.dataSource= new MatTableDataSource

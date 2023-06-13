@@ -20,25 +20,25 @@ export class GastosComponent {
   }
 
   ngOnInit(): void {
-    this.getProductos();
+    this.getGastos();
   }
 
-  public async getProductos(){
+  public async getGastos(){
     await this.api.getAll("Gastoes").then((res)=> {
     this.loadTable([res[0]])
     this.dataSource.data=res;
     })
-    
   }
 
   public loadTable(data:any[]){
     this.displayedColumns=[];
     for(let colummns in data[0]){
       this.displayedColumns.push(colummns);
-
-      
     }
     console.log(this.displayedColumns);
+    this.displayedColumns.push("accion");
+    
   }
+  
   
 }
