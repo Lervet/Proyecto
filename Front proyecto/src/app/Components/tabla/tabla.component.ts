@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormsService } from 'src/app/Services/forms.service';
 import Swal from 'sweetalert2';
 import { __values } from 'tslib';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-tabla',
@@ -20,12 +21,16 @@ export class TablaComponent implements OnInit {
   @Input() formComponente: any;
   @Input() element: any;
   @Input() componenttable: any;
+  @Input() checked: 1;
+  @Input() disabled: 0;
 
 
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   Controller: String;
+
+  
   
   constructor(public api:ApiService, public dialog:MatDialog, public forms:FormsService){
     this.dataSource= new MatTableDataSource
@@ -64,7 +69,25 @@ export class TablaComponent implements OnInit {
     }).then((res)=>{
       if(res.isConfirmed){
         let b: any =[Object.values(element)[0]];
-        this.api.Delete("Publicidads", b )
+        this.api.Delete(this.componenttable, b )
+        window.location.reload();
+        console.log();
+      }
+    })
+
+  }
+  toggle(element: boolean){
+    Swal.fire({
+      title:'¿Quieres cambiar el estado?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Si',
+      denyButtonText: 'No'
+
+    }).then((res)=>{
+      if(res.isConfirmed){
+        let b: any =[Object.values(element)[0]];
+        this.api.Editar(this.componenttable, b )
         window.location.reload();
         console.log();
       }

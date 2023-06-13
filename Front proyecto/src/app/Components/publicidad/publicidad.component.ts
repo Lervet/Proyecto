@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from 'src/app/Services/api.service';
+import { FormPersonasComponent } from '../formularios/form-personas/form-personas.component';
+import { FormPublicidadComponent } from '../formularios/form-publicidad/form-publicidad.component';
 
 @Component({
   selector: 'app-publicidad',
@@ -11,7 +13,7 @@ export class PublicidadComponent {
   title: string= "Publicidad";
   displayedColumns: string[];
   dataSource: MatTableDataSource<any>;
-
+  formComponente:any = FormPublicidadComponent;
 
   constructor(public api:ApiService){
     this.dataSource= new MatTableDataSource

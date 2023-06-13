@@ -13,15 +13,15 @@ export class FormProductosComponent implements OnInit{
   ngOnInit(): void {
     this.forms.element.subscribe((res:any)=>{
       if(res!=""){
-        this.productosForm.setControl('desPro', new FormControl(res.fechaFactura));
-        this.productosForm.setControl('nomPro', new FormControl(res.cantidad));
-        this.productosForm.setControl('preProd', new FormControl(res.cantidad));
-        this.productosForm.setControl('existe', new FormControl(res.cantidad));
-        this.productosForm.setControl('fechProd', new FormControl(res.cantidad));
-        this.productosForm.setControl('cantMax', new FormControl(res.cantidad));
-        this.productosForm.setControl('cantMin', new FormControl(res.cantidad));
-        this.productosForm.setControl('foto', new FormControl(res.cantidad));
-        this.productosForm.setControl('catProd', new FormControl(res.cantidad));
+        this.productosForm.setControl('desPro', new FormControl(res.descripcionPro));
+        this.productosForm.setControl('nomPro', new FormControl(res.nomProveedor));
+        this.productosForm.setControl('preProd', new FormControl(res.precioProd));
+        this.productosForm.setControl('existe', new FormControl(res.existencia));
+        this.productosForm.setControl('fechProd', new FormControl(res.fechaPro));
+        this.productosForm.setControl('cantMax', new FormControl(res.cantMaxProd));
+        this.productosForm.setControl('cantMin', new FormControl(res.cantMinProd));
+        this.productosForm.setControl('foto', new FormControl(res.foto));
+        this.productosForm.setControl('catProd', new FormControl(res.categoria));
         
       }
     })

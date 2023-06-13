@@ -35,6 +35,8 @@ import { FormProductosComponent } from './Components/formularios/form-productos/
 import { FormProveedorComponent } from './Components/formularios/form-proveedor/form-proveedor.component';
 import { FormPublicidadComponent } from './Components/formularios/form-publicidad/form-publicidad.component';
 import { FormFacturaComponent } from './Components/formularios/form-factura/form-factura.component';
+import {MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 @NgModule({
   declarations: [
@@ -76,8 +78,8 @@ import { FormFacturaComponent } from './Components/formularios/form-factura/form
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    MatFormFieldModule
-    
+    MatFormFieldModule,
+    MatSlideToggleModule
 
   ],
   providers: [],

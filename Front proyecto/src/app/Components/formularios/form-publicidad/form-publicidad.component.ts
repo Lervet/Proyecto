@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormsService } from 'src/app/Services/forms.service';
 
 @Component({
   selector: 'app-form-publicidad',
@@ -7,6 +8,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form-publicidad.component.css']
 })
 export class FormPublicidadComponent {
+
+  constructor (public forms: FormsService){ }
+  ngOnInit(): void {
+    this.forms.element.subscribe((res:any)=>{
+      if(res!=""){
+        this.publicidadForm.setControl('nomPubli', new FormControl(res.nomPubli));
+        this.publicidadForm.setControl('tipoPubli', new FormControl(res.tipoPubli));
+        this.publicidadForm.setControl('costPubli', new FormControl(res.costoPubli));
+        this.publicidadForm.setControl('cantPubli', new FormControl(res.cantidadPubli));
+      }
+    })
+  }
   
   publicidadForm= new FormGroup({
     nomPubli: new FormControl('',Validators.required),
