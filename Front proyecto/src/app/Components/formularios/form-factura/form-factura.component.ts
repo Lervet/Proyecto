@@ -13,11 +13,15 @@ export class FormFacturaComponent implements OnInit {
   constructor (public forms: FormsService){}
   ngOnInit(): void {
     this.forms.element.subscribe((res:any)=>{
+      console.log(res)
       if(res!=""){
         this.facturaForm.setControl('fecha', new FormControl(res.fechaFactura));
         this.facturaForm.setControl('cant', new FormControl(res.cantidad));
         this.facturaForm.setControl('formPago', new FormControl(res.formaPago));
-        this.facturaForm.setControl('articulo', new FormControl(res.correo));
+        this.facturaForm.setControl('correo', new FormControl(res.correo));
+        this.facturaForm.setControl('telefono', new FormControl(res.telefono));
+        this.facturaForm.setControl('tipoDoc', new FormControl(res.tipoDocPersona));
+        this.facturaForm.setControl('docPer', new FormControl(res.docPersona));
       }
     })
   }
@@ -26,7 +30,11 @@ export class FormFacturaComponent implements OnInit {
     fecha: new FormControl('',Validators.required),
     cant: new FormControl('',Validators.required),
     formPago: new FormControl('',Validators.required),
-    articulo: new FormControl('',Validators.required),
+
+    correo: new FormControl('',Validators.required),
+    telefono: new FormControl('',Validators.required),
+    tipoDoc: new FormControl('',Validators.required),
+    docPer: new FormControl('',Validators.required),
    
   });
 
@@ -34,7 +42,10 @@ export class FormFacturaComponent implements OnInit {
     console.log(this.facturaForm.controls["fecha"].value);
     console.log(this.facturaForm.controls["cant"].value);
     console.log(this.facturaForm.controls["formPago"].value);
-    console.log(this.facturaForm.controls["articulo"].value);
+    console.log(this.facturaForm.controls["correo"].value);
+    console.log(this.facturaForm.controls["telefono"].value);
+    console.log(this.facturaForm.controls["tipoDoc"].value);
+    console.log(this.facturaForm.controls["docPer"].value);
   }
 
 }

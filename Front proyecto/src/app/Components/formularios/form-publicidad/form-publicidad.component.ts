@@ -12,6 +12,7 @@ export class FormPublicidadComponent {
   constructor (public forms: FormsService){ }
   ngOnInit(): void {
     this.forms.element.subscribe((res:any)=>{
+      console.log(res);
       if(res!=""){
         this.publicidadForm.setControl('nomPubli', new FormControl(res.nomPubli));
         this.publicidadForm.setControl('tipoPubli', new FormControl(res.tipoPubli));

@@ -15,7 +15,40 @@
             Este campo es <strong>obligatorio*</strong>
           </mat-error>
         </mat-form-field>
-        <button mat-raised-button >Crear</button>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de la Publicidad:</mat-label>
+          <input matInput placeholder="ej: 10000" formControlName="nomPubli">
+          <mat-error *ngIf="gastosForm.controls['nomPubli'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo de Publicidad:</mat-label>
+          <input matInput placeholder="ej: 10000" formControlName="tipoPubli">
+          <mat-error *ngIf="gastosForm.controls['tipoPubli'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Estado:</mat-label>
+          <input matInput placeholder="ej: 10000" formControlName="estado">
+          <mat-error *ngIf="gastosForm.controls['estado'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de Empresa:</mat-label>
+          <input matInput placeholder="ej: 10000" formControlName="nomEmpre">
+          <mat-error *ngIf="gastosForm.controls['nomEmpre'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button >Crear</button> 
+        dgsdfg
     </form>
   </div>
   

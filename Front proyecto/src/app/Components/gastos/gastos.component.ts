@@ -30,14 +30,13 @@ export class GastosComponent {
     })
   }
 
+
   public loadTable(data:any[]){
     this.displayedColumns=[];
     for(let colummns in data[0]){
       this.displayedColumns.push(colummns);
     }
-    console.log(this.displayedColumns);
-    this.displayedColumns.push("accion");
-    
+    this.displayedColumns.push('action');
   }
   
   
