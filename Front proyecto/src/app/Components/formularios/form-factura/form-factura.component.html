@@ -24,9 +24,33 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <mat-label>Articulo:</mat-label>
-          <input matInput placeholder="ej: Shampoo para harol" formControlName="articulo">
-          <mat-error *ngIf="facturaForm.controls['articulo'].hasError('required')">
+          <mat-label>Correo:</mat-label>
+          <input matInput placeholder="ej: Shampoo para harol" formControlName="correo">
+          <mat-error *ngIf="facturaForm.controls['correo'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Telefono:</mat-label>
+          <input matInput placeholder="ej: Shampoo para harol" formControlName="telefono">
+          <mat-error *ngIf="facturaForm.controls['telefono'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo de Documento:</mat-label>
+          <input matInput placeholder="ej: Shampoo para harol" formControlName="tipoDoc">
+          <mat-error *ngIf="facturaForm.controls['tipoDoc'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Documento:</mat-label>
+          <input matInput placeholder="ej: Shampoo para harol" formControlName="docPer">
+          <mat-error *ngIf="facturaForm.controls['docPer'].hasError('required')">
             Este campo es <strong>obligatorio*</strong>
           </mat-error>
         </mat-form-field>

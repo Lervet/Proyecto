@@ -2,21 +2,13 @@
     <form class="example-form" [formGroup]="productosForm" novalidate (ngSubmit)="onSubmit()">
 
         <mat-form-field class="example-full-width">
-          <mat-label>Descripcion del producto:</mat-label>
-          <input matInput placeholder="ej: Shampoo" formControlName="desPro">
-          <mat-error *ngIf="productosForm.controls['desPro'].hasError('required')">
+          <mat-label>Fecha de adquisicion del producto:</mat-label>
+          <input matInput placeholder="ej: 23/05/23" formControlName="fechProd">
+          <mat-error *ngIf="productosForm.controls['fechProd'].hasError('required')">
             Este campo es <strong>obligatorio*</strong>
           </mat-error>
         </mat-form-field>
-  
-        <mat-form-field class="example-full-width">
-          <mat-label>Nombre del proveedor:</mat-label>
-          <input matInput placeholder="ej: Harol SAS" formControlName="nomPro">
-          <mat-error *ngIf="productosForm.controls['nomPro'].hasError('required')">
-            Este campo es <strong>obligatorio*</strong>
-          </mat-error>
-        </mat-form-field>
-      
+
         <mat-form-field class="example-full-width">
           <mat-label>Precio del producto:</mat-label>
           <input matInput placeholder="ej: 1239875687" formControlName="preProd">
@@ -26,52 +18,40 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <mat-label>Existencias:</mat-label>
-          <input matInput placeholder="ej: 11239" formControlName="existe">
-          <mat-error *ngIf="productosForm.controls['existe'].hasError('required')">
+          <mat-label>Descripcion del producto:</mat-label>
+          <input matInput placeholder="ej: Shampoo" formControlName="desPro">
+          <mat-error *ngIf="productosForm.controls['desPro'].hasError('required')">
             Este campo es <strong>obligatorio*</strong>
           </mat-error>
         </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Fecha de adquisicion del producto:</mat-label>
-            <input matInput placeholder="ej: 23/05/23" formControlName="fechProd">
-            <mat-error *ngIf="productosForm.controls['fechProd'].hasError('required')">
+            <mat-label>Estado:</mat-label>
+            <input matInput placeholder="ej: 23/05/23" formControlName="estado">
+            <mat-error *ngIf="productosForm.controls['estado'].hasError('required')">
               Este campo es <strong>obligatorio*</strong>
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Cantidad maxima del producto:</mat-label>
-            <input matInput placeholder="ej: 100" formControlName="cantMax">
-            <mat-error *ngIf="productosForm.controls['cantMax'].hasError('required')">
+            <mat-label>Nit:</mat-label>
+            <input matInput placeholder="ej: 23/05/23" formControlName="nit">
+            <mat-error *ngIf="productosForm.controls['nit'].hasError('required')">
               Este campo es <strong>obligatorio*</strong>
             </mat-error>
           </mat-form-field>
 
           <mat-form-field class="example-full-width">
-            <mat-label>Cantidad minima del producto:</mat-label>
-            <input matInput placeholder="ej: 10" formControlName="cantMin">
-            <mat-error *ngIf="productosForm.controls['cantMin'].hasError('required')">
+            <mat-label>Nombre Empresa:</mat-label>
+            <input matInput placeholder="ej: 23/05/23" formControlName="nomEmpre">
+            <mat-error *ngIf="productosForm.controls['nomEmpre'].hasError('required')">
               Este campo es <strong>obligatorio*</strong>
             </mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Foto:</mat-label>
-            <input matInput placeholder="ej: foto" formControlName="foto">
-            <mat-error *ngIf="productosForm.controls['foto'].hasError('required')">
-              Este campo es <strong>obligatorio*</strong>
-            </mat-error>
-          </mat-form-field>
+          
 
-          <mat-form-field class="example-full-width">
-            <mat-label>Categoria del producto:</mat-label>
-            <input matInput placeholder="ej: Resbalosos" formControlName="catProd">
-            <mat-error *ngIf="productosForm.controls['catProd'].hasError('required')">
-              Este campo es <strong>obligatorio*</strong>
-            </mat-error>
-          </mat-form-field>
+
         <button mat-raised-button >Crear</button>
     </form>
   </div>

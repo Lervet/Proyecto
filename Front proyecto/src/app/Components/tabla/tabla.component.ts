@@ -21,8 +21,6 @@ export class TablaComponent implements OnInit {
   @Input() formComponente: any;
   @Input() element: any;
   @Input() componenttable: any;
-  @Input() checked: 1;
-  @Input() disabled: 0;
 
 
 
