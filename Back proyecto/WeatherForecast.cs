@@ -1,4 +1,4 @@
-namespace Blue_Bell
+namespace blue_bell
 {
     public class WeatherForecast
     {

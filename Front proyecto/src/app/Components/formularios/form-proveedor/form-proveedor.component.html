@@ -1,0 +1,46 @@
+<div class="container">
+    <form class="example-form" [formGroup]="proveedorForm" novalidate (ngSubmit)="onSubmit()">
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Telefono:</mat-label>
+        <input matInput placeholder="ej: Harol SAS" formControlName="telefono">
+        <mat-error *ngIf="proveedorForm.controls['telefono'].hasError('required')">
+          Este campo es <strong>obligatorio*</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Tipo de Cedula:</mat-label>
+        <input matInput placeholder="ej: Harol SAS" formControlName="tipoDoc">
+        <mat-error *ngIf="proveedorForm.controls['tipoDoc'].hasError('required')">
+          Este campo es <strong>obligatorio*</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Documento:</mat-label>
+        <input matInput placeholder="ej: Harol SAS" formControlName="docPer">
+        <mat-error *ngIf="proveedorForm.controls['docPer'].hasError('required')">
+          Este campo es <strong>obligatorio*</strong>
+        </mat-error>
+      </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Nit de la empresa:</mat-label>
+          <input matInput placeholder="ej: 123123154" formControlName="nit">
+          <mat-error *ngIf="proveedorForm.controls['nit'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Estado del proveedor:</mat-label>
+          <input matInput placeholder="ej: Activo/Inactivo" formControlName="estado">
+          <mat-error *ngIf="proveedorForm.controls['estado'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button >Crear</button>
+    </form>
+  </div>
+  

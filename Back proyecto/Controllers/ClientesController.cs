@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using Blue_Bell.ModelViews;
+using blue_bell.Models;
 
 namespace Blue_Bell.Controllers
 {
@@ -22,9 +23,23 @@ namespace Blue_Bell.Controllers
 
         // GET: api/Clientes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
+        public async Task<ActionResult<IEnumerable<ClientesMV>>> GetClientes()
         {
-            return await _context.Clientes.ToListAsync();
+            var clientes = await _context.Clientes.ToListAsync();
+            var personas = await _context.Personas.ToListAsync();
+            var query = from cli in clientes
+                        join per in personas on cli.PersonaFk equals per.Idpersona
+                        select new ClientesMV
+                        {
+                            Estatus = cli.Estatus,
+                            Correo = per.Correo,
+                            Telefono = per.Telefono,
+                            TipoDocPersona = per.TipoDocPersona,
+                            DocPersona = per.TipoDocPersona
+                        };
+
+            return Ok(query);
+
         }
 
         // GET: api/Clientes/5

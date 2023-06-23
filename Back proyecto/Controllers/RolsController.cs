@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using blue_bell.Models;
 
-namespace Blue_Bell.Controllers
+namespace blue_bell.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,10 @@ namespace Blue_Bell.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Rol>>> GetRols()
         {
+          if (_context.Rols == null)
+          {
+              return NotFound();
+          }
             return await _context.Rols.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace Blue_Bell.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Rol>> GetRol(int id)
         {
+          if (_context.Rols == null)
+          {
+              return NotFound();
+          }
             var rol = await _context.Rols.FindAsync(id);
 
             if (rol == null)
@@ -77,6 +85,10 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<Rol>> PostRol(Rol rol)
         {
+          if (_context.Rols == null)
+          {
+              return Problem("Entity set 'BlueBellContext.Rols'  is null.");
+          }
             _context.Rols.Add(rol);
             await _context.SaveChangesAsync();
 
@@ -87,6 +99,10 @@ namespace Blue_Bell.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRol(int id)
         {
+            if (_context.Rols == null)
+            {
+                return NotFound();
+            }
             var rol = await _context.Rols.FindAsync(id);
             if (rol == null)
             {
@@ -101,7 +117,7 @@ namespace Blue_Bell.Controllers
 
         private bool RolExists(int id)
         {
-            return _context.Rols.Any(e => e.Idrol == id);
+            return (_context.Rols?.Any(e => e.Idrol == id)).GetValueOrDefault();
         }
     }
 }

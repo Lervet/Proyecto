@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blue_Bell.Models;
+namespace blue_bell.Models;
 
 public partial class Persona
 {
@@ -23,13 +23,15 @@ public partial class Persona
 
     public string? Estatus { get; set; }
 
-    public virtual ICollection<Cliente> Clientes { get; } = new List<Cliente>();
+    public int? RolFk { get; set; }
 
-    public virtual ICollection<Factura> Facturas { get; } = new List<Factura>();
+    public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 
-    public virtual ICollection<ModuloPermiso> ModuloPermisos { get; } = new List<ModuloPermiso>();
+    public virtual ICollection<Factura> Facturas { get; set; } = new List<Factura>();
 
-    public virtual ICollection<Proveedor> Proveedors { get; } = new List<Proveedor>();
+    public virtual ICollection<Proveedor> Proveedors { get; set; } = new List<Proveedor>();
 
-    public virtual ICollection<Usuario> Usuarios { get; } = new List<Usuario>();
+    public virtual Rol? RolFkNavigation { get; set; }
+
+    public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
 }

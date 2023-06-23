@@ -1,0 +1,39 @@
+<div class="container">
+    <form class="example-form" [formGroup]="publicidadForm" novalidate (ngSubmit)="onSubmit()">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre de la publicidad:</mat-label>
+          <input matInput placeholder="ej: Harol publicidad" formControlName="nomPubli">
+          <mat-error *ngIf="publicidadForm.controls['nomPubli'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo de publicidad:</mat-label>
+          <input matInput placeholder="ej: Fisico/Digital" formControlName="tipoPubli">
+          <mat-error *ngIf="publicidadForm.controls['tipoPubli'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Costo de la publicidad:</mat-label>
+          <input matInput placeholder="ej: 900000" formControlName="costPubli">
+          <mat-error *ngIf="publicidadForm.controls['costPubli'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Cantidad de la publicidad:</mat-label>
+            <input matInput placeholder="ej: 10" formControlName="cantPubli">
+            <mat-error *ngIf="publicidadForm.controls['cantPubli'].hasError('required')">
+              Este campo es <strong>obligatorio*</strong>
+            </mat-error>
+          </mat-form-field>
+
+        <button mat-raised-button >Crear</button>
+    </form>
+  </div>
+  

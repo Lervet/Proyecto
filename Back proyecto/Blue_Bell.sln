@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.33414.496
+VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blue_Bell", "Blue_Bell\Blue_Bell.csproj", "{D03374C1-62BC-4E10-8AF1-3FE0BDFE8677}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "blue_bell", "blue_bell.csproj", "{925A0F94-542D-401C-AE5C-54AA653EA36B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D03374C1-62BC-4E10-8AF1-3FE0BDFE8677}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D03374C1-62BC-4E10-8AF1-3FE0BDFE8677}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D03374C1-62BC-4E10-8AF1-3FE0BDFE8677}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D03374C1-62BC-4E10-8AF1-3FE0BDFE8677}.Release|Any CPU.Build.0 = Release|Any CPU
+		{925A0F94-542D-401C-AE5C-54AA653EA36B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925A0F94-542D-401C-AE5C-54AA653EA36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925A0F94-542D-401C-AE5C-54AA653EA36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925A0F94-542D-401C-AE5C-54AA653EA36B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F558963D-5E65-4F67-AC5F-13512F961DF6}
+		SolutionGuid = {62483993-6970-4047-9D80-C6AEC8BFA52E}
 	EndGlobalSection
 EndGlobal

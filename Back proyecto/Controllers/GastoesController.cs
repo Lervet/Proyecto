@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+
+using Blue_Bell.ModelViews;
+using blue_bell.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Blue_Bell.Controllers
 {
@@ -22,11 +25,27 @@ namespace Blue_Bell.Controllers
 
         // GET: api/Gastoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Gasto>>> GetGastos()
+        public async Task<ActionResult<IEnumerable<GastosMV>>> GetGasto()
         {
-            return await _context.Gastos.ToListAsync();
-        }
+            var gastos = await _context.Gastos.ToListAsync();
+            var publicidad = await _context.Publicidads.ToListAsync();
+            var proveedor = await _context.Proveedors.ToListAsync();
+            var query = from gas in gastos
+                        join pub in publicidad on gas.PublicidadFk equals pub.Idpublicidad
+                        join pro in proveedor on gas.ProveedorFk equals pro.Codproveedor
 
+                        select new GastosMV
+                        {
+                            Idcaja = gas.Idcaja,
+                            CompraMercancia = gas.CompraMercancia,
+                            CostoPublicidad = gas.CostoPublicidad,
+                            NomPubli = pub.NomPubli,
+                            TipoPubli = pub.TipoPubli,
+                            NomEmpresa = pro.NomEmpresa,
+                        };
+
+            return Ok(query);
+        }
         // GET: api/Gastoes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Gasto>> GetGasto(int id)
@@ -82,6 +101,7 @@ namespace Blue_Bell.Controllers
 
             return CreatedAtAction("GetGasto", new { id = gasto.Idcaja }, gasto);
         }
+
 
         // DELETE: api/Gastoes/5
         [HttpDelete("{id}")]

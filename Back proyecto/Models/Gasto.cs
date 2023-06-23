@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blue_Bell.Models;
+namespace blue_bell.Models;
 
 public partial class Gasto
 {

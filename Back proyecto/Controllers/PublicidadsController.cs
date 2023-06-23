@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using blue_bell.Models;
 
-namespace Blue_Bell.Controllers
+namespace blue_bell.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,10 @@ namespace Blue_Bell.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Publicidad>>> GetPublicidads()
         {
+          if (_context.Publicidads == null)
+          {
+              return NotFound();
+          }
             return await _context.Publicidads.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace Blue_Bell.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Publicidad>> GetPublicidad(int id)
         {
+          if (_context.Publicidads == null)
+          {
+              return NotFound();
+          }
             var publicidad = await _context.Publicidads.FindAsync(id);
 
             if (publicidad == null)
@@ -77,6 +85,10 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<Publicidad>> PostPublicidad(Publicidad publicidad)
         {
+          if (_context.Publicidads == null)
+          {
+              return Problem("Entity set 'BlueBellContext.Publicidads'  is null.");
+          }
             _context.Publicidads.Add(publicidad);
             await _context.SaveChangesAsync();
 
@@ -87,6 +99,10 @@ namespace Blue_Bell.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePublicidad(int id)
         {
+            if (_context.Publicidads == null)
+            {
+                return NotFound();
+            }
             var publicidad = await _context.Publicidads.FindAsync(id);
             if (publicidad == null)
             {
@@ -101,7 +117,7 @@ namespace Blue_Bell.Controllers
 
         private bool PublicidadExists(int id)
         {
-            return _context.Publicidads.Any(e => e.Idpublicidad == id);
+            return (_context.Publicidads?.Any(e => e.Idpublicidad == id)).GetValueOrDefault();
         }
     }
 }

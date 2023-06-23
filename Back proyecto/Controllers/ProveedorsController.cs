@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using Blue_Bell.ModelViews;
+using blue_bell.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Blue_Bell.Controllers
 {
@@ -22,9 +24,25 @@ namespace Blue_Bell.Controllers
 
         // GET: api/Proveedors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Proveedor>>> GetProveedors()
+        public async Task<ActionResult<IEnumerable<ProveedoresMV>>> GetClientes()
         {
-            return await _context.Proveedors.ToListAsync();
+            var proveedor = await _context.Proveedors.ToListAsync();
+            var personas = await _context.Personas.ToListAsync();
+            var query = from pro in proveedor
+                        join per in personas on pro.PersonaFk equals per.Idpersona
+                        select new ProveedoresMV
+                        {
+                            Codproveedor=pro.Codproveedor,
+                            Telefono = per.Telefono,
+                            TipoDocPersona = per.TipoDocPersona,
+                            DocPersona = per.DocPersona,
+                            Nit = pro.Nit,
+                            Estatus = pro.Estatus,
+
+                        };
+
+            return Ok(query);
+
         }
 
         // GET: api/Proveedors/5
@@ -81,6 +99,26 @@ namespace Blue_Bell.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProveedor", new { id = proveedor.Codproveedor }, proveedor);
+        }
+
+        [HttpPatch]
+        public object SwStatus(ProveedoresMV proveedorid)
+        {
+
+            string statusGet = proveedorid.Estatus == "0" ? "1" : "0";
+
+            var updateSw = $"UPDATE proveedor SET estatus='{statusGet}' WHERE codproveedor=@codproveedor";
+
+            var parames = new SqlParameter[]
+            {
+                new SqlParameter("@codproveedor",proveedorid.Codproveedor) // 1,2
+            };
+
+            _context.Database.ExecuteSqlRaw(updateSw, parames);
+
+
+            return _context.Proveedors.ToList();
+
         }
 
         // DELETE: api/Proveedors/5

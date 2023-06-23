@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using blue_bell.Models;
 
-namespace Blue_Bell.Controllers
+namespace blue_bell.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,10 @@ namespace Blue_Bell.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FacturaProducto>>> GetFacturaProductos()
         {
+          if (_context.FacturaProductos == null)
+          {
+              return NotFound();
+          }
             return await _context.FacturaProductos.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace Blue_Bell.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<FacturaProducto>> GetFacturaProducto(int id)
         {
+          if (_context.FacturaProductos == null)
+          {
+              return NotFound();
+          }
             var facturaProducto = await _context.FacturaProductos.FindAsync(id);
 
             if (facturaProducto == null)
@@ -77,6 +85,10 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<FacturaProducto>> PostFacturaProducto(FacturaProducto facturaProducto)
         {
+          if (_context.FacturaProductos == null)
+          {
+              return Problem("Entity set 'BlueBellContext.FacturaProductos'  is null.");
+          }
             _context.FacturaProductos.Add(facturaProducto);
             await _context.SaveChangesAsync();
 
@@ -87,6 +99,10 @@ namespace Blue_Bell.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFacturaProducto(int id)
         {
+            if (_context.FacturaProductos == null)
+            {
+                return NotFound();
+            }
             var facturaProducto = await _context.FacturaProductos.FindAsync(id);
             if (facturaProducto == null)
             {
@@ -101,7 +117,7 @@ namespace Blue_Bell.Controllers
 
         private bool FacturaProductoExists(int id)
         {
-            return _context.FacturaProductos.Any(e => e.Idfacprod == id);
+            return (_context.FacturaProductos?.Any(e => e.Idfacprod == id)).GetValueOrDefault();
         }
     }
 }

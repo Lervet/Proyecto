@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blue_Bell.Models;
+namespace blue_bell.Models;
 
 public partial class BlueBellContext : DbContext
 {
@@ -43,7 +43,7 @@ public partial class BlueBellContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=PORTATIL-ERICK; Database=blue_bell; Encrypt = False; Trusted_Connection=True;");
+        => optionsBuilder.UseSqlServer("Server=PORTATIL-ERICK\\SQLEXPRESS; Database=Blue_Bell; Encrypt = False; \n  Trusted_Connection=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -60,7 +60,9 @@ public partial class BlueBellContext : DbContext
                 .HasColumnName("estatus");
             entity.Property(e => e.PersonaFk).HasColumnName("persona_fk");
 
-          
+            entity.HasOne(d => d.PersonaFkNavigation).WithMany(p => p.Clientes)
+                .HasForeignKey(d => d.PersonaFk)
+                .HasConstraintName("FK_cliente_persona");
         });
 
         modelBuilder.Entity<DetallesProducto>(entity =>
@@ -77,6 +79,13 @@ public partial class BlueBellContext : DbContext
                 .HasColumnName("precio_total");
             entity.Property(e => e.ProductoFk).HasColumnName("producto_fk");
 
+            entity.HasOne(d => d.CantidadNavigation).WithMany(p => p.DetallesProductos)
+                .HasForeignKey(d => d.Cantidad)
+                .HasConstraintName("FK_detalles_productos_producto");
+
+            entity.HasOne(d => d.FacturaFkNavigation).WithMany(p => p.DetallesProductos)
+                .HasForeignKey(d => d.FacturaFk)
+                .HasConstraintName("FK_detalles_productos_factura");
         });
 
         modelBuilder.Entity<Factura>(entity =>
@@ -190,11 +199,11 @@ public partial class BlueBellContext : DbContext
                 .HasMaxLength(45)
                 .IsUnicode(false)
                 .HasColumnName("permisos");
-            entity.Property(e => e.PersonasFk).HasColumnName("personas_fk");
+            entity.Property(e => e.RolFk).HasColumnName("rol_fk");
 
-            entity.HasOne(d => d.PersonasFkNavigation).WithMany(p => p.ModuloPermisos)
-                .HasForeignKey(d => d.PersonasFk)
-                .HasConstraintName("FK_modulo_permisos_persona");
+            entity.HasOne(d => d.RolFkNavigation).WithMany(p => p.ModuloPermisos)
+                .HasForeignKey(d => d.RolFk)
+                .HasConstraintName("FK_modulo_permisos_rol");
         });
 
         modelBuilder.Entity<Persona>(entity =>
@@ -228,6 +237,7 @@ public partial class BlueBellContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("rol");
+            entity.Property(e => e.RolFk).HasColumnName("rol_fk");
             entity.Property(e => e.Telefono)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -236,6 +246,10 @@ public partial class BlueBellContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("tipo_doc_persona");
+
+            entity.HasOne(d => d.RolFkNavigation).WithMany(p => p.Personas)
+                .HasForeignKey(d => d.RolFk)
+                .HasConstraintName("FK_persona_rol");
         });
 
         modelBuilder.Entity<Producto>(entity =>

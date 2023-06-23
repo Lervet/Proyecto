@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using blue_bell.Models;
 
-namespace Blue_Bell.Controllers
+namespace blue_bell.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,10 @@ namespace Blue_Bell.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Login>>> GetLogins()
         {
+          if (_context.Logins == null)
+          {
+              return NotFound();
+          }
             return await _context.Logins.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace Blue_Bell.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Login>> GetLogin(int id)
         {
+          if (_context.Logins == null)
+          {
+              return NotFound();
+          }
             var login = await _context.Logins.FindAsync(id);
 
             if (login == null)
@@ -77,6 +85,10 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<Login>> PostLogin(Login login)
         {
+          if (_context.Logins == null)
+          {
+              return Problem("Entity set 'BlueBellContext.Logins'  is null.");
+          }
             _context.Logins.Add(login);
             await _context.SaveChangesAsync();
 
@@ -87,6 +99,10 @@ namespace Blue_Bell.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLogin(int id)
         {
+            if (_context.Logins == null)
+            {
+                return NotFound();
+            }
             var login = await _context.Logins.FindAsync(id);
             if (login == null)
             {
@@ -101,7 +117,7 @@ namespace Blue_Bell.Controllers
 
         private bool LoginExists(int id)
         {
-            return _context.Logins.Any(e => e.Idlogin == id);
+            return (_context.Logins?.Any(e => e.Idlogin == id)).GetValueOrDefault();
         }
     }
 }

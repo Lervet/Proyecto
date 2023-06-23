@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using blue_bell.Models;
 
-namespace Blue_Bell.Controllers
+namespace blue_bell.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,10 @@ namespace Blue_Bell.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DetallesProducto>>> GetDetallesProductos()
         {
+          if (_context.DetallesProductos == null)
+          {
+              return NotFound();
+          }
             return await _context.DetallesProductos.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace Blue_Bell.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<DetallesProducto>> GetDetallesProducto(int id)
         {
+          if (_context.DetallesProductos == null)
+          {
+              return NotFound();
+          }
             var detallesProducto = await _context.DetallesProductos.FindAsync(id);
 
             if (detallesProducto == null)
@@ -77,6 +85,10 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<DetallesProducto>> PostDetallesProducto(DetallesProducto detallesProducto)
         {
+          if (_context.DetallesProductos == null)
+          {
+              return Problem("Entity set 'BlueBellContext.DetallesProductos'  is null.");
+          }
             _context.DetallesProductos.Add(detallesProducto);
             await _context.SaveChangesAsync();
 
@@ -87,6 +99,10 @@ namespace Blue_Bell.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDetallesProducto(int id)
         {
+            if (_context.DetallesProductos == null)
+            {
+                return NotFound();
+            }
             var detallesProducto = await _context.DetallesProductos.FindAsync(id);
             if (detallesProducto == null)
             {
@@ -101,7 +117,7 @@ namespace Blue_Bell.Controllers
 
         private bool DetallesProductoExists(int id)
         {
-            return _context.DetallesProductos.Any(e => e.Iddetallesprod == id);
+            return (_context.DetallesProductos?.Any(e => e.Iddetallesprod == id)).GetValueOrDefault();
         }
     }
 }

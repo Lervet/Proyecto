@@ -17,5 +17,7 @@ export class MenuComponent {
     );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
-
+  cerrar(){
+    localStorage.setItem('login','logout')
+}
 }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using blue_bell.Models;
 
-namespace Blue_Bell.Controllers
+namespace blue_bell.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,10 @@ namespace Blue_Bell.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
+          if (_context.Usuarios == null)
+          {
+              return NotFound();
+          }
             return await _context.Usuarios.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace Blue_Bell.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetUsuario(int id)
         {
+          if (_context.Usuarios == null)
+          {
+              return NotFound();
+          }
             var usuario = await _context.Usuarios.FindAsync(id);
 
             if (usuario == null)
@@ -77,6 +85,10 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
+          if (_context.Usuarios == null)
+          {
+              return Problem("Entity set 'BlueBellContext.Usuarios'  is null.");
+          }
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
@@ -87,6 +99,10 @@ namespace Blue_Bell.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsuario(int id)
         {
+            if (_context.Usuarios == null)
+            {
+                return NotFound();
+            }
             var usuario = await _context.Usuarios.FindAsync(id);
             if (usuario == null)
             {
@@ -101,7 +117,7 @@ namespace Blue_Bell.Controllers
 
         private bool UsuarioExists(int id)
         {
-            return _context.Usuarios.Any(e => e.Idusuario == id);
+            return (_context.Usuarios?.Any(e => e.Idusuario == id)).GetValueOrDefault();
         }
     }
 }

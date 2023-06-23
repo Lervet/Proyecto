@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using Blue_Bell.ModelViews;
+using blue_bell.Models;
+using Microsoft.Data.SqlClient;
+using System.Globalization;
 
 namespace Blue_Bell.Controllers
 {
@@ -22,9 +25,26 @@ namespace Blue_Bell.Controllers
 
         // GET: api/Facturas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Factura>>> GetFacturas()
+        public async Task<ActionResult<IEnumerable<FacturasMV>>> GetFactura()
         {
-            return await _context.Facturas.ToListAsync();
+            var facturas = await _context.Facturas.ToListAsync();
+            var personas = await _context.Personas.ToListAsync();
+
+            var query = from fac in facturas
+                        join per in personas on fac.PersonaFk equals per.Idpersona
+                        select new FacturasMV
+                        {
+                            Nofactura = fac.Nofactura,
+                            Cantidad = fac.Cantidad,
+                            FormaPago = fac.FormaPago,
+                            Correo = per.Correo,
+                            Telefono = per.Telefono,
+                            TipoDocPersona = per.TipoDocPersona,
+                            DocPersona = per.DocPersona,
+                            Articulo = fac.Articulo,
+                        };
+
+            return Ok(query);
         }
 
         // GET: api/Facturas/5
@@ -43,33 +63,30 @@ namespace Blue_Bell.Controllers
 
         // PUT: api/Facturas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutFactura(int id, Factura factura)
+        [HttpPut]
+        public void PutFactura( FacturasMV factura)
         {
-            if (id != factura.Nofactura)
+            string rstFinal = "";
+            var getFkPersona = _context.Personas.Where(s => s.DocPersona == factura.DocPersona).Select(s => new
             {
-                return BadRequest();
+                idPersona=s.Idpersona
+            });
+
+            foreach (var item in getFkPersona)
+            {
+                rstFinal += item.idPersona;
             }
 
-            _context.Entry(factura).State = EntityState.Modified;
+            var query = $"UPDATE factura SET cantidad='{factura.Cantidad}',forma_pago='{factura.FormaPago}',articulo='{factura.Articulo}'," +
+            $"persona_fk='{rstFinal}'" +
+            $"WHERE nofactura=@nofactura";
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FacturaExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var xxx = new SqlParameter[] {
+               new SqlParameter("@nofactura",factura.Nofactura)
+           };
 
-            return NoContent();
+            _context.Database.ExecuteSqlRaw(query, xxx);
+
         }
 
         // POST: api/Facturas

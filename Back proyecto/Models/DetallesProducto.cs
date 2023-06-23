@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blue_Bell.Models;
+namespace blue_bell.Models;
 
 public partial class DetallesProducto
 {
@@ -15,5 +15,7 @@ public partial class DetallesProducto
 
     public int? ProductoFk { get; set; }
 
+    public virtual Producto? CantidadNavigation { get; set; }
 
+    public virtual Factura? FacturaFkNavigation { get; set; }
 }

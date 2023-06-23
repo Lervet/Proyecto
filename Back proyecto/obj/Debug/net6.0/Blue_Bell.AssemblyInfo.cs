@@ -11,13 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("46b8e722-b9d8-480a-907c-d783079ca5d9")]
-[assembly: System.Reflection.AssemblyCompanyAttribute("Blue_Bell")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("blue_bell")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("Blue_Bell")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Blue_Bell")]
+[assembly: System.Reflection.AssemblyProductAttribute("blue_bell")]
+[assembly: System.Reflection.AssemblyTitleAttribute("blue_bell")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.

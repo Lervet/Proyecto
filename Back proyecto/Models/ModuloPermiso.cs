@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blue_Bell.Models;
+namespace blue_bell.Models;
 
 public partial class ModuloPermiso
 {
@@ -11,7 +11,7 @@ public partial class ModuloPermiso
 
     public string? Permisos { get; set; }
 
-    public int? PersonasFk { get; set; }
+    public int? RolFk { get; set; }
 
-    public virtual Persona? PersonasFkNavigation { get; set; }
+    public virtual Rol? RolFkNavigation { get; set; }
 }

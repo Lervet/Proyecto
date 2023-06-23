@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Erick\\Desktop\\Programacion\\blue_bell\\Blue_Bell\\Blue_Bell\\Blue_Bell.csproj": {}
+    "C:\\Users\\erick\\OneDrive\\Escritorio\\Blue_Bell\\blue_bell\\blue_bell.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Erick\\Desktop\\Programacion\\blue_bell\\Blue_Bell\\Blue_Bell\\Blue_Bell.csproj": {
+    "C:\\Users\\erick\\OneDrive\\Escritorio\\Blue_Bell\\blue_bell\\blue_bell.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Erick\\Desktop\\Programacion\\blue_bell\\Blue_Bell\\Blue_Bell\\Blue_Bell.csproj",
-        "projectName": "Blue_Bell",
-        "projectPath": "C:\\Users\\Erick\\Desktop\\Programacion\\blue_bell\\Blue_Bell\\Blue_Bell\\Blue_Bell.csproj",
-        "packagesPath": "C:\\Users\\Erick\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Erick\\Desktop\\Programacion\\blue_bell\\Blue_Bell\\Blue_Bell\\obj\\",
+        "projectUniqueName": "C:\\Users\\erick\\OneDrive\\Escritorio\\Blue_Bell\\blue_bell\\blue_bell.csproj",
+        "projectName": "blue_bell",
+        "projectPath": "C:\\Users\\erick\\OneDrive\\Escritorio\\Blue_Bell\\blue_bell\\blue_bell.csproj",
+        "packagesPath": "C:\\Users\\erick\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\erick\\OneDrive\\Escritorio\\Blue_Bell\\blue_bell\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Erick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\erick\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -45,19 +45,27 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Cors": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.3, )"
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Contracts": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.12, )"
+              "version": "[6.0.13, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -83,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

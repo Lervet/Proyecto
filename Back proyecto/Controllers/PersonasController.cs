@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using Blue_Bell.ModelViews;
+using blue_bell.Models;
+using Microsoft.Data.SqlClient;
 
 namespace Blue_Bell.Controllers
 {
@@ -22,9 +24,24 @@ namespace Blue_Bell.Controllers
 
         // GET: api/Personas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Persona>>> GetPersonas()
+        public async Task<ActionResult<IEnumerable<PersonaMV>>> GetPersonas()
         {
-            return await _context.Personas.ToListAsync();
+            var persona = await _context.Personas.ToListAsync();
+            var query = from per in persona
+                        select new PersonaMV
+                        {
+                            Idpersona=per.Idpersona,
+                            Nombre = per.Nombre,
+                            Apellidos = per.Apellidos,
+                            Rol = per.Rol,
+                            Correo = per.Correo,
+                            Telefono = per.Telefono,
+                            TipoDocPersona = per.TipoDocPersona,
+                            DocPersona = per.DocPersona,
+                            Estatus = per.Estatus
+                        };
+
+            return Ok(query);
         }
 
         // GET: api/Personas/5
@@ -41,11 +58,14 @@ namespace Blue_Bell.Controllers
             return persona;
         }
 
+
         // PUT: api/Personas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPersona(int id, Persona persona)
         {
+
+
             if (id != persona.Idpersona)
             {
                 return BadRequest();
@@ -81,6 +101,26 @@ namespace Blue_Bell.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPersona", new { id = persona.Idpersona }, persona);
+        }
+
+        [HttpPatch]
+        public object SwStatus(PersonaMV personaid)
+        {
+
+            string statusGet = personaid.Estatus == "0"  ? "1": "0";
+
+            var updateSw = $"UPDATE persona SET estatus='{statusGet}' WHERE idpersona=@idpersona";
+
+            var parames = new SqlParameter[]
+            {
+                new SqlParameter("@idpersona",personaid.Idpersona) 
+            };
+
+            _context.Database.ExecuteSqlRaw(updateSw, parames);
+
+
+            return _context.Personas.ToList();
+            
         }
 
         // DELETE: api/Personas/5

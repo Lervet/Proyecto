@@ -1,0 +1,69 @@
+<div class="container">
+    <form class="example-form" [formGroup]="personasForm" novalidate (ngSubmit)="onSubmit()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre:</mat-label>
+          <input matInput placeholder="ej: Nom" formControlName="nom">
+          <mat-error *ngIf="personasForm.controls['nom'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+  
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellidos:</mat-label>
+          <input matInput placeholder="ej: Ape" formControlName="ape">
+          <mat-error *ngIf="personasForm.controls['ape'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <mat-label>Rol del cliente:</mat-label>
+          <input matInput placeholder="ej: Administrador" formControlName="rol">
+          <mat-error *ngIf="personasForm.controls['rol'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo:</mat-label>
+          <input matInput placeholder="ej: 123@123.com" formControlName="correo">
+          <mat-error *ngIf="personasForm.controls['correo'].hasError('required')">
+            Este campo es <strong>obligatorio*</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Telefono:</mat-label>
+            <input matInput placeholder="ej: 1231235465" formControlName="telefono">
+            <mat-error *ngIf="personasForm.controls['telefono'].hasError('required')">
+              Este campo es <strong>obligatorio*</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Tipo de documento:</mat-label>
+            <input matInput placeholder="ej: Cc/Ti" formControlName="tipoDoc">
+            <mat-error *ngIf="personasForm.controls['tipoDoc'].hasError('required')">
+              Este campo es <strong>obligatorio*</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Documento:</mat-label>
+            <input matInput placeholder="ej: 1002987467" formControlName="docPer">
+            <mat-error *ngIf="personasForm.controls['docPer'].hasError('required')">
+              Este campo es <strong>obligatorio*</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>Estado del cliente:</mat-label>
+            <input matInput placeholder="ej: Activo/inactivo" formControlName="estado">
+            <mat-error *ngIf="personasForm.controls['estado'].hasError('required')">
+              Este campo es <strong>obligatorio*</strong>
+            </mat-error>
+          </mat-form-field>
+        <button mat-raised-button >Crear</button>
+    </form>
+  </div>
+  

@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using Blue_Bell.ModelViews;
+using blue_bell.Models;
+using Microsoft.Data.SqlClient;
 
-namespace Blue_Bell.Controllers
+
+namespace Blue.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,15 +25,35 @@ namespace Blue_Bell.Controllers
 
         // GET: api/Productoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Producto>>> GetProductos()
+        public async Task<ActionResult<IEnumerable<ProductosMV>>> GetProducto()
         {
-            return await _context.Productos.ToListAsync();
+            var producto = await _context.Productos.ToListAsync();
+            var proveedor = await _context.Proveedors.ToListAsync();
+            var query = from prod in producto
+                        join prov in proveedor on prod.ProveedorFk equals prov.Codproveedor
+                        select new ProductosMV
+                        {
+                            Idproducto = prod.Idproducto,
+                            FechaPro = prod.FechaPro,
+                            PrecioProd = prod.PrecioProd,
+                            DescripcionPro = prod.DescripcionPro,
+                            Nit = prov.Nit,
+                            NomEmpresa = prov.NomEmpresa,
+                        };
+
+
+            return Ok(query);
+
         }
 
         // GET: api/Productoes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Producto>> GetProducto(int id)
         {
+            if (_context.Productos == null)
+            {
+                return NotFound();
+            }
             var producto = await _context.Productos.FindAsync(id);
 
             if (producto == null)
@@ -77,16 +100,26 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<Producto>> PostProducto(Producto producto)
         {
+            if (_context.Productos == null)
+            {
+                return Problem("Entity set 'BlueBellContext.Productos'  is null.");
+            }
             _context.Productos.Add(producto);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProducto", new { id = producto.Idproducto }, producto);
         }
 
+        
+
         // DELETE: api/Productoes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProducto(int id)
         {
+            if (_context.Productos == null)
+            {
+                return NotFound();
+            }
             var producto = await _context.Productos.FindAsync(id);
             if (producto == null)
             {
@@ -101,7 +134,8 @@ namespace Blue_Bell.Controllers
 
         private bool ProductoExists(int id)
         {
-            return _context.Productos.Any(e => e.Idproducto == id);
+            return (_context.Productos?.Any(e => e.Idproducto == id)).GetValueOrDefault();
         }
     }
 }
+

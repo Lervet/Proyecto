@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blue_Bell.Models;
+namespace blue_bell.Models;
 
 public partial class Producto
 {
@@ -27,9 +27,9 @@ public partial class Producto
 
     public string? Categoria { get; set; }
 
-    public virtual ICollection<DetallesProducto> DetallesProductos { get; } = new List<DetallesProducto>();
+    public virtual ICollection<DetallesProducto> DetallesProductos { get; set; } = new List<DetallesProducto>();
 
-    public virtual ICollection<FacturaProducto> FacturaProductos { get; } = new List<FacturaProducto>();
+    public virtual ICollection<FacturaProducto> FacturaProductos { get; set; } = new List<FacturaProducto>();
 
     public virtual Proveedor? ProveedorFkNavigation { get; set; }
 }

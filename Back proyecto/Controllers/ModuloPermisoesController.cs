@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Blue_Bell.Models;
+using blue_bell.Models;
 
-namespace Blue_Bell.Controllers
+namespace blue_bell.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,6 +24,10 @@ namespace Blue_Bell.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ModuloPermiso>>> GetModuloPermisos()
         {
+          if (_context.ModuloPermisos == null)
+          {
+              return NotFound();
+          }
             return await _context.ModuloPermisos.ToListAsync();
         }
 
@@ -31,6 +35,10 @@ namespace Blue_Bell.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ModuloPermiso>> GetModuloPermiso(int id)
         {
+          if (_context.ModuloPermisos == null)
+          {
+              return NotFound();
+          }
             var moduloPermiso = await _context.ModuloPermisos.FindAsync(id);
 
             if (moduloPermiso == null)
@@ -77,6 +85,10 @@ namespace Blue_Bell.Controllers
         [HttpPost]
         public async Task<ActionResult<ModuloPermiso>> PostModuloPermiso(ModuloPermiso moduloPermiso)
         {
+          if (_context.ModuloPermisos == null)
+          {
+              return Problem("Entity set 'BlueBellContext.ModuloPermisos'  is null.");
+          }
             _context.ModuloPermisos.Add(moduloPermiso);
             await _context.SaveChangesAsync();
 
@@ -87,6 +99,10 @@ namespace Blue_Bell.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteModuloPermiso(int id)
         {
+            if (_context.ModuloPermisos == null)
+            {
+                return NotFound();
+            }
             var moduloPermiso = await _context.ModuloPermisos.FindAsync(id);
             if (moduloPermiso == null)
             {
@@ -101,7 +117,7 @@ namespace Blue_Bell.Controllers
 
         private bool ModuloPermisoExists(int id)
         {
-            return _context.ModuloPermisos.Any(e => e.IdmoduloPermisos == id);
+            return (_context.ModuloPermisos?.Any(e => e.IdmoduloPermisos == id)).GetValueOrDefault();
         }
     }
 }

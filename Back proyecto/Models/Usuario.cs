@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Blue_Bell.Models;
+namespace blue_bell.Models;
 
 public partial class Usuario
 {
@@ -15,7 +15,7 @@ public partial class Usuario
 
     public int? PersonaFk { get; set; }
 
-    public virtual ICollection<Login> Logins { get; } = new List<Login>();
+    public virtual ICollection<Login> Logins { get; set; } = new List<Login>();
 
     public virtual Persona? PersonaFkNavigation { get; set; }
 }
